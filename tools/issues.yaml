@@ -1,0 +1,79 @@
+identity:
+  name: issues
+  author: yasu89
+  label:
+    en_US: Get Redmine Issues
+    zh_Hans: 获取Redmine问题
+    pt_BR: Obter Issues do Redmine
+    ja_JP: Redmineチケットを取得
+description:
+  human:
+    en_US: Retrieve issues from Redmine project management system
+    zh_Hans: 从Redmine项目管理系统检索问题
+    pt_BR: Recuperar issues do sistema de gestão de projetos Redmine
+    ja_JP: Redmineプロジェクト管理システムからチケットを取得
+  llm: Retrieve and list issues from a Redmine project management system with filtering options
+parameters:
+  - name: project_id
+    type: string
+    required: false
+    label:
+      en_US: Project ID
+      zh_Hans: 项目ID
+      pt_BR: ID do Projeto
+      ja_JP: プロジェクトID
+    human_description:
+      en_US: Numeric project ID or project identifier to filter issues
+      zh_Hans: 数字项目ID或项目标识符来过滤问题
+      pt_BR: ID numérico do projeto ou identificador do projeto para filtrar issues
+      ja_JP: チケットをフィルタリングするための数値プロジェクトIDまたはプロジェクト識別子
+    llm_description: Project ID (numeric) or project identifier to filter issues by specific project
+    form: llm
+  - name: status_id
+    type: string
+    required: false
+    label:
+      en_US: Status ID
+      zh_Hans: 状态ID
+      pt_BR: ID do Status
+      ja_JP: ステータスID
+    human_description:
+      en_US: Issue status ID to filter by (1=New, 2=In Progress, 3=Resolved, 4=Feedback, 5=Closed, 6=Rejected)
+      zh_Hans: 按状态ID过滤问题（1=新建, 2=进行中, 3=已解决, 4=反馈, 5=已关闭, 6=已拒绝）
+      pt_BR: ID do status do issue para filtrar (1=Novo, 2=Em Progresso, 3=Resolvido, 4=Feedback, 5=Fechado, 6=Rejeitado)
+      ja_JP: フィルタリングするステータスID（1=新規, 2=進行中, 3=解決済み, 4=フィードバック, 5=終了, 6=却下）
+    llm_description: Filter issues by status ID (1=New, 2=In Progress, 3=Resolved, 4=Feedback, 5=Closed, 6=Rejected)
+    form: llm
+  - name: assigned_to_id
+    type: string
+    required: false
+    label:
+      en_US: Assigned To ID
+      zh_Hans: 分配给用户ID
+      pt_BR: ID do Responsável
+      ja_JP: 担当者ID
+    human_description:
+      en_US: User ID to filter issues assigned to specific user
+      zh_Hans: 用户ID来过滤分配给特定用户的问题
+      pt_BR: ID do usuário para filtrar issues atribuídas a usuário específico
+      ja_JP: 特定のユーザーに割り当てられたチケットをフィルタリングするためのユーザーID
+    llm_description: Filter issues by assignee user ID
+    form: llm
+  - name: limit
+    type: string
+    required: false
+    label:
+      en_US: Limit
+      zh_Hans: 限制数量
+      pt_BR: Limite
+      ja_JP: 取得件数制限
+    human_description:
+      en_US: "Maximum number of issues to retrieve (default: 25, max: 100)"
+      zh_Hans: 要检索的最大问题数量（默认：25，最大：100）
+      pt_BR: "Número máximo de issues para recuperar (padrão: 25, máx: 100)"
+      ja_JP: "取得するチケットの最大数（デフォルト：25、最大：100）"
+    llm_description: Maximum number of issues to retrieve (default 25, maximum 100)
+    form: llm
+extra:
+  python:
+    source: tools/issues.py
