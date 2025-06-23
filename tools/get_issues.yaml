@@ -76,4 +76,4 @@ parameters:
     form: llm
 extra:
   python:
-    source: tools/issues.py
+    source: tools/get_issues.py

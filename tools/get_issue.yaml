@@ -46,4 +46,4 @@ parameters:
     form: llm
 extra:
   python:
-    source: tools/issue.py
+    source: tools/get_issue.py

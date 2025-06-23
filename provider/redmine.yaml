@@ -42,8 +42,8 @@ credentials_for_provider:
       zh_Hans: 从Redmine账户设置中获取您的API密钥
       pt_BR: Obtenha sua chave da API nas configurações da conta do Redmine
 tools:
-  - tools/issues.yaml
-  - tools/issue.yaml
+  - tools/get_issues.yaml
+  - tools/get_issue.yaml
   - tools/create_issue.yaml
   - tools/update_issue.yaml
 extra:
