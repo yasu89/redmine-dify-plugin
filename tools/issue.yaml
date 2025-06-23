@@ -1,0 +1,49 @@
+identity:
+  name: issue
+  author: yasu89
+  label:
+    en_US: Get Single Redmine Issue
+    zh_Hans: 获取单个Redmine问题
+    pt_BR: Obter Issue Único do Redmine
+    ja_JP: 単一のRedmineチケットを取得
+description:
+  human:
+    en_US: Retrieve a single issue from Redmine project management system by ID
+    zh_Hans: 通过ID从Redmine项目管理系统检索单个问题
+    pt_BR: Recuperar um único issue do sistema de gestão de projetos Redmine por ID
+    ja_JP: IDによってRedmineプロジェクト管理システムから単一のチケットを取得
+  llm: Retrieve detailed information about a specific issue from a Redmine project management system using its ID
+parameters:
+  - name: issue_id
+    type: string
+    required: true
+    label:
+      en_US: Issue ID
+      zh_Hans: 问题ID
+      pt_BR: ID do Issue
+      ja_JP: チケットID
+    human_description:
+      en_US: The numeric ID of the issue to retrieve
+      zh_Hans: 要检索的问题的数字ID
+      pt_BR: O ID numérico do issue a ser recuperado
+      ja_JP: 取得するチケットの数値ID
+    llm_description: The numeric ID of the specific issue to retrieve from Redmine
+    form: llm
+  - name: include
+    type: string
+    required: false
+    label:
+      en_US: Include Additional Data
+      zh_Hans: 包含额外数据
+      pt_BR: Incluir Dados Adicionais
+      ja_JP: 追加データを含める
+    human_description:
+      en_US: "Comma-separated list of additional data to include (journals, children, attachments, relations, changesets, watchers)"
+      zh_Hans: "要包含的额外数据的逗号分隔列表（journals, children, attachments, relations, changesets, watchers）"
+      pt_BR: "Lista separada por vírgulas de dados adicionais a incluir (journals, children, attachments, relations, changesets, watchers)"  
+      ja_JP: "含める追加データのカンマ区切りリスト（journals, children, attachments, relations, changesets, watchers）"
+    llm_description: Comma-separated list of additional data to include with the issue (journals, children, attachments, relations, changesets, watchers)
+    form: llm
+extra:
+  python:
+    source: tools/issue.py
