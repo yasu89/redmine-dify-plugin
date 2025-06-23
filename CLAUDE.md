@@ -36,8 +36,8 @@ This is a Dify plugin that provides Redmine integration as a tool provider. The 
   - `redmine.py`: Provider class with credential validation
   - `redmine.yaml`: Provider configuration
 - **tools/**: Individual tool implementations
-  - `redmine.py`: Main tool logic (`RedmineTool` class)
-  - `redmine.yaml`: Tool parameter definitions
+  - `issues.py`: Main tool logic (`RedmineTool` class)
+  - `issues.yaml`: Tool parameter definitions
 
 ### Plugin Structure
 - Python 3.12 runtime with `dify_plugin` SDK
@@ -46,15 +46,60 @@ This is a Dify plugin that provides Redmine integration as a tool provider. The 
 - Credential validation in provider class
 
 ### Current Implementation Status
-- Basic plugin structure is in place
-- Tool currently returns placeholder "Hello, world!" response
-- Provider credential validation is not implemented (placeholder comment)
-- Plugin accepts a "query" string parameter
+- ✅ Basic plugin structure is in place
+- ✅ Redmine API integration implemented with full credential validation
+- ✅ Tool renamed from `redmine` to `issues` for better clarity
+- ✅ Multi-language support (English, Chinese, Portuguese, Japanese)
+- ✅ Comprehensive parameter support:
+  - `project_id`: Filter by project ID or identifier
+  - `status_id`: Filter by issue status (1=New, 2=In Progress, 3=Resolved, etc.)
+  - `assigned_to_id`: Filter by assignee user ID
+  - `limit`: Maximum number of issues to retrieve (default: 25, max: 100)
+- ✅ Dual output format: JSON data + formatted text summary
+- ✅ Error handling for API connection, authentication, and response parsing
 
-## Key Files to Modify
-- `tools/redmine.py:8-11` - Implement actual Redmine API integration
-- `provider/redmine.py:10-13` - Implement credential validation for Redmine API
-- Tool parameters can be extended in `tools/redmine.yaml:14-26`
+## Key Files
+- `tools/issues.py` - Redmine API integration with comprehensive issue retrieval
+- `tools/issues.yaml` - Tool configuration with 4-language support
+- `provider/redmine.py` - Provider with credential validation
+- `provider/redmine.yaml` - Provider configuration with credentials setup
+
+## Recent Changes
+- Fixed YAML syntax errors in tool configuration
+- Renamed tool from `redmine` to `issues` for better naming
+- Added Japanese language support to all UI texts
+- Implemented dual output (JSON + text) for better user experience
+- Added comprehensive error handling and parameter validation
+
+## Tool Configuration Details
+
+### Issues Tool (`tools/issues.yaml`)
+The main tool configuration supports:
+- **Multi-language UI**: English, Chinese (Simplified), Portuguese (Brazil), Japanese
+- **Flexible Filtering**: Project, status, assignee-based filtering
+- **Configurable Limits**: 1-100 issues per request
+- **Comprehensive Output**: Both structured JSON and readable text format
+
+### Provider Configuration (`provider/redmine.yaml`)
+Credentials required:
+- `redmine_host`: Your Redmine server URL (e.g., https://redmine.example.com)
+- `api_key`: Your Redmine API key (available in account settings)
+
+## Troubleshooting
+
+### Common Issues
+1. **YAML Syntax Errors**: Ensure colons in string values are properly quoted
+2. **API Connection**: Verify Redmine host URL and API key are correct
+3. **Tool Not Found**: Check that `provider/redmine.yaml` references `tools/issues.yaml`
+
+### Testing the Plugin
+```bash
+# Validate YAML syntax
+python -c "import yaml; yaml.safe_load(open('tools/issues.yaml', 'r'))"
+
+# Test plugin locally
+python -m main
+```
 
 ## Documentation References
 - **Dify Plugin Development**: https://docs.dify.ai/plugin-dev-en/0111-getting-started-dify-plugin
