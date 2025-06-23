@@ -44,6 +44,7 @@ credentials_for_provider:
 tools:
   - tools/issues.yaml
   - tools/issue.yaml
+  - tools/create_issue.yaml
 extra:
   python:
     source: provider/redmine.py
