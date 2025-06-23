@@ -78,80 +78,13 @@ class RedmineIssueTool(Tool):
                 yield self.create_text_message(f"Error: No issue data returned for ID #{issue_id}")
                 return
             
-            # Format issue for output
-            formatted_issue = {
-                "id": issue.get("id"),
-                "subject": issue.get("subject"),
-                "description": issue.get("description", ""),
-                "status": {
-                    "id": issue.get("status", {}).get("id"),
-                    "name": issue.get("status", {}).get("name")
-                },
-                "priority": {
-                    "id": issue.get("priority", {}).get("id"),
-                    "name": issue.get("priority", {}).get("name")
-                },
-                "tracker": {
-                    "id": issue.get("tracker", {}).get("id"),
-                    "name": issue.get("tracker", {}).get("name")
-                },
-                "project": {
-                    "id": issue.get("project", {}).get("id"),
-                    "name": issue.get("project", {}).get("name")
-                },
-                "author": {
-                    "id": issue.get("author", {}).get("id"),
-                    "name": issue.get("author", {}).get("name")
-                },
-                "assigned_to": {
-                    "id": issue.get("assigned_to", {}).get("id"),
-                    "name": issue.get("assigned_to", {}).get("name")
-                } if issue.get("assigned_to") else None,
-                "category": {
-                    "id": issue.get("category", {}).get("id"),
-                    "name": issue.get("category", {}).get("name")
-                } if issue.get("category") else None,
-                "fixed_version": {
-                    "id": issue.get("fixed_version", {}).get("id"),
-                    "name": issue.get("fixed_version", {}).get("name")
-                } if issue.get("fixed_version") else None,
-                "parent": {
-                    "id": issue.get("parent", {}).get("id")
-                } if issue.get("parent") else None,
-                "created_on": issue.get("created_on"),
-                "updated_on": issue.get("updated_on"),
-                "start_date": issue.get("start_date"),
-                "due_date": issue.get("due_date"),
-                "done_ratio": issue.get("done_ratio"),
-                "is_private": issue.get("is_private", False),
-                "estimated_hours": issue.get("estimated_hours"),
-                "total_estimated_hours": issue.get("total_estimated_hours"),
-                "spent_hours": issue.get("spent_hours"),
-                "total_spent_hours": issue.get("total_spent_hours"),
-                "custom_fields": issue.get("custom_fields", [])
-            }
-            
-            # Add optional included data
-            if "journals" in params.get("include", ""):
-                formatted_issue["journals"] = issue.get("journals", [])
-            if "children" in params.get("include", ""):
-                formatted_issue["children"] = issue.get("children", [])
-            if "attachments" in params.get("include", ""):
-                formatted_issue["attachments"] = issue.get("attachments", [])
-            if "relations" in params.get("include", ""):
-                formatted_issue["relations"] = issue.get("relations", [])
-            if "changesets" in params.get("include", ""):
-                formatted_issue["changesets"] = issue.get("changesets", [])
-            if "watchers" in params.get("include", ""):
-                formatted_issue["watchers"] = issue.get("watchers", [])
-            
             result = {
-                "issue": formatted_issue
+                "issue": issue
             }
             
             # Download and output attachments if requested
-            if "attachments" in params.get("include", "") and formatted_issue.get("attachments"):
-                for attachment in formatted_issue["attachments"]:
+            if "attachments" in params.get("include", "") and issue.get("attachments"):
+                for attachment in issue["attachments"]:
                     content_url = attachment.get("content_url")
                     if content_url:
                         try:

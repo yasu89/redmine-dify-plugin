@@ -58,31 +58,8 @@ class RedmineTool(Tool):
             response.raise_for_status()
             
             data = response.json()
-            issues = data.get("issues", [])
-            total_count = data.get("total_count", 0)
             
-            # Format issues for output
-            formatted_issues = []
-            for issue in issues:
-                formatted_issue = {
-                    "id": issue.get("id"),
-                    "subject": issue.get("subject"),
-                    "status": issue.get("status", {}).get("name"),
-                    "priority": issue.get("priority", {}).get("name"),
-                    "assigned_to": issue.get("assigned_to", {}).get("name") if issue.get("assigned_to") else "Unassigned",
-                    "project": issue.get("project", {}).get("name"),
-                    "author": issue.get("author", {}).get("name"),
-                    "created_on": issue.get("created_on"),
-                    "updated_on": issue.get("updated_on"),
-                    "description": issue.get("description", "")[:200] + "..." if len(issue.get("description", "")) > 200 else issue.get("description", "")
-                }
-                formatted_issues.append(formatted_issue)
-            
-            result = {
-                "total_count": total_count,
-                "issues_count": len(formatted_issues),
-                "issues": formatted_issues
-            }
+            result = data
             
             # Output JSON as text string
             yield self.create_text_message(json.dumps(result, ensure_ascii=False))
