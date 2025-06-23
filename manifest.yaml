@@ -3,16 +3,16 @@ type: plugin
 author: yasu89
 name: redmine
 label:
-  en_US: redmine
-  ja_JP: redmine
-  zh_Hans: redmine
-  pt_BR: redmine
+  en_US: Redmine
+  ja_JP: Redmine
+  zh_Hans: Redmine
+  pt_BR: Redmine
 description:
   en_US: Redmine plugin for Dify
   ja_JP: Redmine plugin for Dify
   zh_Hans: Redmine plugin for Dify
   pt_BR: Redmine plugin for Dify
-icon: icon.svg
+icon: favicon.ico
 resource:
   memory: 268435456
   permission:
@@ -38,7 +38,7 @@ meta:
     language: python
     version: "3.12"
     entrypoint: main
-  minimum_dify_version: null
+  minimum_dify_version: 1.0.0
 created_at: 2025-06-23T22:10:55.284275+09:00
 privacy: PRIVACY.md
 repo: https://github.com/yasu89/redmine-dify-plugin

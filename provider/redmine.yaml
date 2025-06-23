@@ -2,14 +2,14 @@ identity:
   author: yasu89
   name: redmine
   label:
-    en_US: redmine
-    zh_Hans: redmine
-    pt_BR: redmine
+    en_US: Redmine
+    zh_Hans: Redmine
+    pt_BR: Redmine
   description:
     en_US: Redmine plugin for Dify
     zh_Hans: Redmine plugin for Dify
     pt_BR: Redmine plugin for Dify
-  icon: icon.svg
+  icon: favicon.ico
 credentials_for_provider:
   redmine_host:
     type: text-input
