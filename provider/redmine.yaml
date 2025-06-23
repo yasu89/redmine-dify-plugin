@@ -45,6 +45,7 @@ tools:
   - tools/issues.yaml
   - tools/issue.yaml
   - tools/create_issue.yaml
+  - tools/update_issue.yaml
 extra:
   python:
     source: provider/redmine.py
