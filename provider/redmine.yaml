@@ -1,0 +1,17 @@
+identity:
+  author: yasu89
+  name: redmine
+  label:
+    en_US: redmine
+    zh_Hans: redmine
+    pt_BR: redmine
+  description:
+    en_US: Redmine plugin for Dify
+    zh_Hans: Redmine plugin for Dify
+    pt_BR: Redmine plugin for Dify
+  icon: icon.svg
+tools:
+  - tools/redmine.yaml
+extra:
+  python:
+    source: provider/redmine.py

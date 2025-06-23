@@ -1,0 +1,45 @@
+version: 0.0.1
+type: plugin
+author: yasu89
+name: redmine
+label:
+  en_US: redmine
+  ja_JP: redmine
+  zh_Hans: redmine
+  pt_BR: redmine
+description:
+  en_US: Redmine plugin for Dify
+  ja_JP: Redmine plugin for Dify
+  zh_Hans: Redmine plugin for Dify
+  pt_BR: Redmine plugin for Dify
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    model:
+      enabled: false
+      llm: false
+      text_embedding: false
+      rerank: false
+      tts: false
+      speech2text: false
+      moderation: false
+    node:
+      enabled: false
+plugins:
+  tools:
+    - provider/redmine.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2025-06-23T22:10:55.284275+09:00
+privacy: PRIVACY.md
+repo: https://github.com/yasu89/redmine-dify-plugin
+verified: false
