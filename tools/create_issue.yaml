@@ -2,16 +2,16 @@ identity:
   name: create_issue
   author: yasu89
   label:
-    en_US: Create Redmine Issue
-    zh_Hans: 创建Redmine问题
-    pt_BR: Criar Issue do Redmine
-    ja_JP: Redmineチケットを作成
+    en_US: Create an Issue
+    zh_Hans: 创建问题
+    pt_BR: Criar um Issue
+    ja_JP: チケットを作成
 description:
   human:
-    en_US: Create a new issue in Redmine project management system
-    zh_Hans: 在Redmine项目管理系统中创建新问题
-    pt_BR: Criar um novo issue no sistema de gestão de projetos Redmine
-    ja_JP: Redmineプロジェクト管理システムで新しいチケットを作成
+    en_US: Create a new issue in Redmine
+    zh_Hans: 在Redmine中创建新问题
+    pt_BR: Criar um novo issue no Redmine
+    ja_JP: Redmineで新しいチケットを作成
   llm: Create a new issue in a Redmine project management system with specified parameters
 parameters:
   - name: project_id
@@ -27,6 +27,11 @@ parameters:
       zh_Hans: 将创建问题的数字项目ID或项目标识符
       pt_BR: ID numérico do projeto ou identificador do projeto onde o issue será criado
       ja_JP: チケットが作成される数値プロジェクトIDまたはプロジェクト識別子
+    placeholder:
+      en_US: "project123"
+      zh_Hans: "项目123"
+      pt_BR: "projeto123"
+      ja_JP: "プロジェクト123"
     llm_description: Project ID (numeric) or project identifier where the new issue will be created
     form: llm
   - name: subject
@@ -42,6 +47,11 @@ parameters:
       zh_Hans: 问题的标题或主题
       pt_BR: Título ou assunto do issue
       ja_JP: チケットのタイトルまたは件名
+    placeholder:
+      en_US: "Fix login bug"
+      zh_Hans: "修复登录错误"
+      pt_BR: "Corrigir bug de login"
+      ja_JP: "ログインバグの修正"
     llm_description: Title or subject of the new issue
     form: llm
   - name: description
@@ -57,6 +67,11 @@ parameters:
       zh_Hans: 问题的详细描述
       pt_BR: Descrição detalhada do issue
       ja_JP: チケットの詳細な説明
+    placeholder:
+      en_US: "Users cannot log in with valid credentials"
+      zh_Hans: "用户无法使用有效凭据登录"
+      pt_BR: "Usuários não conseguem fazer login com credenciais válidas"
+      ja_JP: "有効な認証情報でユーザーがログインできない"
     llm_description: Detailed description of the issue
     form: llm
   - name: tracker_id
@@ -72,6 +87,11 @@ parameters:
       zh_Hans: "跟踪器ID（例如：1=错误, 2=功能, 3=支持）"
       pt_BR: "ID do tracker (ex: 1=Bug, 2=Feature, 3=Support)"
       ja_JP: "トラッカーID（例：1=バグ, 2=機能, 3=サポート）"
+    placeholder:
+      en_US: "1"
+      zh_Hans: "1"
+      pt_BR: "1"
+      ja_JP: "1"
     llm_description: Tracker ID to categorize the issue type
     form: llm
   - name: status_id
@@ -87,6 +107,11 @@ parameters:
       zh_Hans: "状态ID（1=新建, 2=进行中, 3=已解决, 4=反馈, 5=已关闭, 6=已拒绝）"
       pt_BR: "ID do status (1=Novo, 2=Em Progresso, 3=Resolvido, 4=Feedback, 5=Fechado, 6=Rejeitado)"
       ja_JP: "ステータスID（1=新規, 2=進行中, 3=解決済み, 4=フィードバック, 5=終了, 6=却下）"
+    placeholder:
+      en_US: "1"
+      zh_Hans: "1"
+      pt_BR: "1"
+      ja_JP: "1"
     llm_description: Status ID for the new issue
     form: llm
   - name: priority_id
@@ -102,6 +127,11 @@ parameters:
       zh_Hans: "优先级ID（1=低, 2=正常, 3=高, 4=紧急, 5=立即）"
       pt_BR: "ID da prioridade (1=Baixa, 2=Normal, 3=Alta, 4=Urgente, 5=Imediata)"
       ja_JP: "優先度ID（1=低, 2=通常, 3=高, 4=緊急, 5=即座）"
+    placeholder:
+      en_US: "2"
+      zh_Hans: "2"
+      pt_BR: "2"
+      ja_JP: "2"
     llm_description: Priority ID for the new issue
     form: llm
   - name: assigned_to_id
@@ -117,6 +147,11 @@ parameters:
       zh_Hans: 要分配问题的用户ID
       pt_BR: ID do usuário para atribuir o issue
       ja_JP: チケットを割り当てるユーザーID
+    placeholder:
+      en_US: "123"
+      zh_Hans: "123"
+      pt_BR: "123"
+      ja_JP: "123"
     llm_description: User ID to assign the issue to
     form: llm
   - name: category_id
@@ -132,6 +167,11 @@ parameters:
       zh_Hans: 问题的分类ID
       pt_BR: ID da categoria para o issue
       ja_JP: チケットのカテゴリID
+    placeholder:
+      en_US: "1"
+      zh_Hans: "1"
+      pt_BR: "1"
+      ja_JP: "1"
     llm_description: Category ID for the issue
     form: llm
   - name: fixed_version_id
@@ -147,6 +187,11 @@ parameters:
       zh_Hans: 问题的目标版本ID
       pt_BR: ID da versão alvo para o issue
       ja_JP: チケットの対象バージョンID
+    placeholder:
+      en_US: "1"
+      zh_Hans: "1"
+      pt_BR: "1"
+      ja_JP: "1"
     llm_description: Target version ID for the issue
     form: llm
   - name: estimated_hours
@@ -162,6 +207,11 @@ parameters:
       zh_Hans: 完成问题的预估小时数
       pt_BR: Horas estimadas para completar o issue
       ja_JP: チケット完了の予定工数
+    placeholder:
+      en_US: "8"
+      zh_Hans: "8"
+      pt_BR: "8"
+      ja_JP: "8"
     llm_description: Estimated hours to complete the issue
     form: llm
   - name: is_private
