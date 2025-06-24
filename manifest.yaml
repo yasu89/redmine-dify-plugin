@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: yasu89
 name: redmine
@@ -30,7 +30,7 @@ plugins:
   tools:
     - provider/redmine.yaml
 meta:
-  version: 0.0.1
+  version: 0.0.2
   arch:
     - amd64
     - arm64
