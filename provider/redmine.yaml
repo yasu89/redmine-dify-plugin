@@ -59,6 +59,7 @@ tools:
   - tools/create_issue.yaml
   - tools/update_issue.yaml
   - tools/get_users.yaml
+  - tools/get_user.yaml
   - tools/create_user.yaml
 extra:
   python:
