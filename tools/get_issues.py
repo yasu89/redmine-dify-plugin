@@ -2,6 +2,7 @@ from collections.abc import Generator
 from typing import Any
 import requests
 import json
+import mimetypes
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
@@ -101,7 +102,7 @@ class RedmineTool(Tool):
                             value = value.strip()
                             if key.startswith('cf_'):
                                 params[key] = value
-                except (ValueError, AttributeError) as e:
+                except (ValueError, AttributeError):
                     # Ignore malformed custom field parameters
                     pass
         
@@ -112,11 +113,47 @@ class RedmineTool(Tool):
             
             data = response.json()
             
-            result = data
+            # Check if attachments should be downloaded
+            include_param = tool_parameters.get("include", "")
+            should_download_attachments = "attachments" in include_param.lower()
             
+            # Download attachments if requested
+            if should_download_attachments and "issues" in data:
+                for issue in data["issues"]:
+                    if "attachments" in issue and issue["attachments"]:
+                        for attachment in issue["attachments"]:
+                            try:
+                                # Download attachment
+                                attachment_url = f"{redmine_host}/attachments/download/{attachment['id']}/{attachment['filename']}"
+                                attachment_response = requests.get(
+                                    attachment_url, 
+                                    headers={"X-Redmine-API-Key": api_key}, 
+                                    timeout=30
+                                )
+                                attachment_response.raise_for_status()
+                                
+                                # Determine MIME type
+                                mime_type = attachment.get('content_type', 'application/octet-stream')
+                                if not mime_type:
+                                    mime_type, _ = mimetypes.guess_type(attachment['filename'])
+                                    if not mime_type:
+                                        mime_type = 'application/octet-stream'
+                                
+                                # Create blob message for the attachment
+                                yield self.create_blob_message(
+                                    blob=attachment_response.content,
+                                    meta={
+                                        'mime_type': mime_type,
+                                        'filename': attachment['filename']
+                                    }
+                                )
+                            except (requests.exceptions.RequestException, ValueError):
+                                # Continue if attachment download fails
+                                continue
+
             # Output JSON as text string
-            yield self.create_text_message(json.dumps(result, ensure_ascii=False))
-            yield self.create_json_message(result)
+            yield self.create_text_message(json.dumps(data, ensure_ascii=False))
+            yield self.create_json_message(data)
             
         except requests.exceptions.RequestException as e:
             yield self.create_text_message(f"Error connecting to Redmine: {str(e)}")
