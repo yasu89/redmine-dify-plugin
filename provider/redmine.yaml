@@ -58,6 +58,8 @@ tools:
   - tools/get_issue.yaml
   - tools/create_issue.yaml
   - tools/update_issue.yaml
+  - tools/get_users.yaml
+  - tools/create_user.yaml
 extra:
   python:
     source: provider/redmine.py
