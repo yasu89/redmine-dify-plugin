@@ -34,81 +34,6 @@ parameters:
       ja_JP: "123"
     llm_description: The numeric ID of the specific issue to update
     form: llm
-  - name: subject
-    type: string
-    required: false
-    label:
-      en_US: Subject
-      zh_Hans: 主题
-      pt_BR: Assunto
-      ja_JP: 件名
-    human_description:
-      en_US: New title or subject of the issue
-      zh_Hans: 问题的新标题或主题
-      pt_BR: Novo título ou assunto do issue
-      ja_JP: チケットの新しいタイトルまたは件名
-    placeholder:
-      en_US: "Updated bug title"
-      zh_Hans: "更新的错误标题"
-      pt_BR: "Título do bug atualizado"
-      ja_JP: "更新されたバグタイトル"
-    llm_description: New title or subject of the issue
-    form: llm
-  - name: description
-    type: string
-    required: false
-    label:
-      en_US: Description
-      zh_Hans: 描述
-      pt_BR: Descrição
-      ja_JP: 説明
-    human_description:
-      en_US: New detailed description of the issue
-      zh_Hans: 问题的新详细描述
-      pt_BR: Nova descrição detalhada do issue
-      ja_JP: チケットの新しい詳細な説明
-    placeholder:
-      en_US: "Additional information about the issue"
-      zh_Hans: "问题的附加信息"
-      pt_BR: "Informações adicionais sobre o issue"
-      ja_JP: "チケットに関する追加情報"
-    llm_description: New detailed description of the issue
-    form: llm
-  - name: notes
-    type: string
-    required: false
-    label:
-      en_US: Notes
-      zh_Hans: 备注
-      pt_BR: Notas
-      ja_JP: ノート
-    human_description:
-      en_US: Comments about the update
-      zh_Hans: 关于更新的评论
-      pt_BR: Comentários sobre a atualização
-      ja_JP: 更新に関するコメント
-    placeholder:
-      en_US: "Fixed the reported issue"
-      zh_Hans: "修复了报告的问题"
-      pt_BR: "Problema reportado foi corrigido"
-      ja_JP: "報告された問題を修正しました"
-    llm_description: Comments about the update
-    form: llm
-  - name: private_notes
-    type: boolean
-    required: false
-    label:
-      en_US: Private Notes
-      zh_Hans: 私有备注
-      pt_BR: Notas Privadas
-      ja_JP: プライベートノート
-    human_description:
-      en_US: Whether the notes should be private
-      zh_Hans: 备注是否应该是私有的
-      pt_BR: Se as notas devem ser privadas
-      ja_JP: ノートをプライベートにするかどうか
-    llm_description: Whether the notes should be private
-    form: llm
   - name: project_id
     type: string
     required: false
@@ -189,25 +114,45 @@ parameters:
       ja_JP: "3"
     llm_description: Priority ID for the issue
     form: llm
-  - name: assigned_to_id
+  - name: subject
     type: string
     required: false
     label:
-      en_US: Assigned To ID
-      zh_Hans: 分配给用户ID
-      pt_BR: ID do Responsável
-      ja_JP: 担当者ID
+      en_US: Subject
+      zh_Hans: 主题
+      pt_BR: Assunto
+      ja_JP: 件名
     human_description:
-      en_US: User ID to assign the issue to
-      zh_Hans: 要分配问题的用户ID
-      pt_BR: ID do usuário para atribuir o issue
-      ja_JP: チケットを割り当てるユーザーID
+      en_US: New title or subject of the issue
+      zh_Hans: 问题的新标题或主题
+      pt_BR: Novo título ou assunto do issue
+      ja_JP: チケットの新しいタイトルまたは件名
     placeholder:
-      en_US: "456"
-      zh_Hans: "456"
-      pt_BR: "456"
-      ja_JP: "456"
-    llm_description: User ID to assign the issue to
+      en_US: "Updated bug title"
+      zh_Hans: "更新的错误标题"
+      pt_BR: "Título do bug atualizado"
+      ja_JP: "更新されたバグタイトル"
+    llm_description: New title or subject of the issue
+    form: llm
+  - name: description
+    type: string
+    required: false
+    label:
+      en_US: Description
+      zh_Hans: 描述
+      pt_BR: Descrição
+      ja_JP: 説明
+    human_description:
+      en_US: New detailed description of the issue
+      zh_Hans: 问题的新详细描述
+      pt_BR: Nova descrição detalhada do issue
+      ja_JP: チケットの新しい詳細な説明
+    placeholder:
+      en_US: "Additional information about the issue"
+      zh_Hans: "问题的附加信息"
+      pt_BR: "Informações adicionais sobre o issue"
+      ja_JP: "チケットに関する追加情報"
+    llm_description: New detailed description of the issue
     form: llm
   - name: category_id
     type: string
@@ -249,6 +194,101 @@ parameters:
       ja_JP: "2"
     llm_description: Target version ID for the issue
     form: llm
+  - name: assigned_to_id
+    type: string
+    required: false
+    label:
+      en_US: Assigned To ID
+      zh_Hans: 分配给用户ID
+      pt_BR: ID do Responsável
+      ja_JP: 担当者ID
+    human_description:
+      en_US: User ID to assign the issue to
+      zh_Hans: 要分配问题的用户ID
+      pt_BR: ID do usuário para atribuir o issue
+      ja_JP: チケットを割り当てるユーザーID
+    placeholder:
+      en_US: "456"
+      zh_Hans: "456"
+      pt_BR: "456"
+      ja_JP: "456"
+    llm_description: User ID to assign the issue to
+    form: llm
+  - name: parent_issue_id
+    type: string
+    required: false
+    label:
+      en_US: Parent Issue ID
+      zh_Hans: 父问题ID
+      pt_BR: ID do Issue Pai
+      ja_JP: 親チケットID
+    human_description:
+      en_US: Parent issue ID to make this issue a subtask
+      zh_Hans: 使此问题成为子任务的父问题ID
+      pt_BR: ID do issue pai para tornar este issue uma subtarefa
+      ja_JP: このチケットをサブタスクにするための親チケットID
+    placeholder:
+      en_US: "789"
+      zh_Hans: "789"
+      pt_BR: "789"
+      ja_JP: "789"
+    llm_description: Parent issue ID to make this issue a subtask
+    form: llm
+  - name: custom_fields
+    type: string
+    required: false
+    label:
+      en_US: Custom Fields
+      zh_Hans: 自定义字段
+      pt_BR: Campos Personalizados
+      ja_JP: カスタムフィールド
+    human_description:
+      en_US: "Custom fields as JSON string (e.g., [{\"id\":1,\"value\":\"text\"},{\"id\":2,\"value\":[\"1\",\"2\"]}])"
+      zh_Hans: "自定义字段JSON字符串（例如：[{\"id\":1,\"value\":\"text\"},{\"id\":2,\"value\":[\"1\",\"2\"]}]）"
+      pt_BR: "Campos personalizados como string JSON (ex: [{\"id\":1,\"value\":\"text\"},{\"id\":2,\"value\":[\"1\",\"2\"]}])"
+      ja_JP: "カスタムフィールドのJSON文字列（例：[{\"id\":1,\"value\":\"text\"},{\"id\":2,\"value\":[\"1\",\"2\"]}]）"
+    placeholder:
+      en_US: "[{\"id\":1,\"value\":\"updated value\"}]"
+      zh_Hans: "[{\"id\":1,\"value\":\"更新的值\"}]"
+      pt_BR: "[{\"id\":1,\"value\":\"valor atualizado\"}]"
+      ja_JP: "[{\"id\":1,\"value\":\"更新された値\"}]"
+    llm_description: Custom fields as JSON array with id and value pairs
+    form: llm
+  - name: watcher_user_ids
+    type: string
+    required: false
+    label:
+      en_US: Watcher User IDs
+      zh_Hans: 观察者用户ID
+      pt_BR: IDs dos Usuários Observadores
+      ja_JP: ウォッチャーユーザーID
+    human_description:
+      en_US: "Comma-separated list of user IDs to add as watchers (e.g., 1,2,3)"
+      zh_Hans: "要添加为观察者的用户ID列表，用逗号分隔（例如：1,2,3）"
+      pt_BR: "Lista de IDs de usuários separados por vírgula para adicionar como observadores (ex: 1,2,3)"
+      ja_JP: "ウォッチャーとして追加するユーザーIDのカンマ区切りリスト（例：1,2,3）"
+    placeholder:
+      en_US: "4,5,6"
+      zh_Hans: "4,5,6"
+      pt_BR: "4,5,6"
+      ja_JP: "4,5,6"
+    llm_description: Array of user IDs to add as watchers (comma-separated)
+    form: llm
+  - name: is_private
+    type: boolean
+    required: false
+    label:
+      en_US: Private Issue
+      zh_Hans: 私有问题
+      pt_BR: Issue Privado
+      ja_JP: プライベートチケット
+    human_description:
+      en_US: Whether the issue should be private
+      zh_Hans: 问题是否应该是私有的
+      pt_BR: Se o issue deve ser privado
+      ja_JP: チケットをプライベートにするかどうか
+    llm_description: Whether the issue should be private
+    form: llm
   - name: estimated_hours
     type: string
     required: false
@@ -269,8 +309,45 @@ parameters:
       ja_JP: "12"
     llm_description: Estimated hours to complete the issue
     form: llm
-  - name: done_ratio
+  - name: notes
     type: string
+    required: false
+    label:
+      en_US: Notes
+      zh_Hans: 备注
+      pt_BR: Notas
+      ja_JP: ノート
+    human_description:
+      en_US: Comments about the update
+      zh_Hans: 关于更新的评论
+      pt_BR: Comentários sobre a atualização
+      ja_JP: 更新に関するコメント
+    placeholder:
+      en_US: "Fixed the reported issue"
+      zh_Hans: "修复了报告的问题"
+      pt_BR: "Problema reportado foi corrigido"
+      ja_JP: "報告された問題を修正しました"
+    llm_description: Comments about the update
+    form: llm
+  - name: private_notes
+    type: boolean
+    required: false
+    label:
+      en_US: Private Notes
+      zh_Hans: 私有备注
+      pt_BR: Notas Privadas
+      ja_JP: プライベートノート
+    human_description:
+      en_US: Whether the notes should be private
+      zh_Hans: 备注是否应该是私有的
+      pt_BR: Se as notas devem ser privadas
+      ja_JP: ノートをプライベートにするかどうか
+    llm_description: Whether the notes should be private
+    form: llm
+  - name: done_ratio
+    type: number
+    min: 0
+    max: 100
     required: false
     label:
       en_US: Done Ratio
@@ -288,21 +365,6 @@ parameters:
       pt_BR: "75"
       ja_JP: "75"
     llm_description: Completion percentage from 0 to 100
-    form: llm
-  - name: is_private
-    type: boolean
-    required: false
-    label:
-      en_US: Private Issue
-      zh_Hans: 私有问题
-      pt_BR: Issue Privado
-      ja_JP: プライベートチケット
-    human_description:
-      en_US: Whether the issue should be private
-      zh_Hans: 问题是否应该是私有的
-      pt_BR: Se o issue deve ser privado
-      ja_JP: チケットをプライベートにするかどうか
-    llm_description: Whether the issue should be private
     form: llm
 extra:
   python:
