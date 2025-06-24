@@ -61,6 +61,7 @@ tools:
   - tools/get_users.yaml
   - tools/get_user.yaml
   - tools/create_user.yaml
+  - tools/update_user.yaml
 extra:
   python:
     source: provider/redmine.py
