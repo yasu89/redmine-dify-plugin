@@ -28,18 +28,18 @@ class RedmineTool(Tool):
             "Content-Type": "application/json"
         }
         
-        # Build query parameters
+        # Build query parameters following API documentation order
         params = {}
         
-        if tool_parameters.get("project_id"):
-            params["project_id"] = tool_parameters["project_id"]
-            
-        if tool_parameters.get("status_id"):
-            params["status_id"] = tool_parameters["status_id"]
-            
-        if tool_parameters.get("assigned_to_id"):
-            params["assigned_to_id"] = tool_parameters["assigned_to_id"]
-            
+        # Basic parameters (offset, limit, sort, include)
+        if tool_parameters.get("offset"):
+            try:
+                offset_int = int(tool_parameters["offset"])
+                if offset_int >= 0:
+                    params["offset"] = str(offset_int)
+            except ValueError:
+                pass
+                
         # Set limit (default 25, max 100)
         limit = tool_parameters.get("limit", "25")
         try:
@@ -51,6 +51,59 @@ class RedmineTool(Tool):
             params["limit"] = str(limit_int)
         except ValueError:
             params["limit"] = "25"
+            
+        if tool_parameters.get("sort"):
+            params["sort"] = tool_parameters["sort"]
+            
+        if tool_parameters.get("include"):
+            params["include"] = tool_parameters["include"]
+            
+        # Optional filters (issue_id, project_id, subproject_id, tracker_id, status_id, assigned_to_id, parent_id)
+        if tool_parameters.get("issue_id"):
+            params["issue_id"] = tool_parameters["issue_id"]
+            
+        if tool_parameters.get("project_id"):
+            params["project_id"] = tool_parameters["project_id"]
+            
+        if tool_parameters.get("subproject_id"):
+            params["subproject_id"] = tool_parameters["subproject_id"]
+            
+        if tool_parameters.get("tracker_id"):
+            params["tracker_id"] = tool_parameters["tracker_id"]
+            
+        if tool_parameters.get("status_id"):
+            params["status_id"] = tool_parameters["status_id"]
+            
+        if tool_parameters.get("assigned_to_id"):
+            params["assigned_to_id"] = tool_parameters["assigned_to_id"]
+            
+        if tool_parameters.get("parent_id"):
+            params["parent_id"] = tool_parameters["parent_id"]
+            
+        # Date filters
+        if tool_parameters.get("created_on"):
+            params["created_on"] = tool_parameters["created_on"]
+            
+        if tool_parameters.get("updated_on"):
+            params["updated_on"] = tool_parameters["updated_on"]
+            
+        # Handle custom fields
+        if tool_parameters.get("custom_fields"):
+            custom_fields_str = tool_parameters["custom_fields"]
+            # Parse custom fields in format: cf_1=value&cf_2=~substring
+            if custom_fields_str:
+                try:
+                    # Split by & and add each custom field parameter
+                    for field_param in custom_fields_str.split('&'):
+                        if '=' in field_param:
+                            key, value = field_param.split('=', 1)
+                            key = key.strip()
+                            value = value.strip()
+                            if key.startswith('cf_'):
+                                params[key] = value
+                except (ValueError, AttributeError) as e:
+                    # Ignore malformed custom field parameters
+                    pass
         
         try:
             # Make API request
