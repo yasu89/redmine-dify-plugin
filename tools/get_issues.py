@@ -88,22 +88,23 @@ class RedmineTool(Tool):
         if tool_parameters.get("updated_on"):
             params["updated_on"] = tool_parameters["updated_on"]
 
-        # Handle custom fields
+        # Handle additional query parameters (custom fields and other filters)
         if tool_parameters.get("custom_fields"):
             custom_fields_str = tool_parameters["custom_fields"]
-            # Parse custom fields in format: cf_1=value&cf_2=~substring
+            # Parse additional parameters in format: cf_1=value&fixed_version_id=2&category_id=3
             if custom_fields_str:
                 try:
-                    # Split by & and add each custom field parameter
+                    # Split by & and add each parameter
                     for field_param in custom_fields_str.split('&'):
                         if '=' in field_param:
                             key, value = field_param.split('=', 1)
                             key = key.strip()
                             value = value.strip()
-                            if key.startswith('cf_'):
+                            # Accept any parameter (custom fields, fixed_version_id, category_id, etc.)
+                            if key and value:
                                 params[key] = value
                 except (ValueError, AttributeError):
-                    # Ignore malformed custom field parameters
+                    # Ignore malformed parameters
                     pass
 
         try:

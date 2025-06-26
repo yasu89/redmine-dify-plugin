@@ -280,21 +280,21 @@ parameters:
     type: string
     required: false
     label:
-      en_US: Custom Fields Filter
-      zh_Hans: 自定义字段过滤器
-      pt_BR: Filtro de Campos Personalizados
-      ja_JP: カスタムフィールドフィルター
+      en_US: Additional Query Parameters
+      zh_Hans: 附加查询参数
+      pt_BR: Parâmetros de Consulta Adicionais
+      ja_JP: 追加クエリパラメータ
     human_description:
-      en_US: "Custom field filters as query parameters (e.g., cf_1=value&cf_2=~substring)"
-      zh_Hans: "作为查询参数的自定义字段过滤器（例如：cf_1=value&cf_2=~substring）"
-      pt_BR: "Filtros de campos personalizados como parâmetros de consulta (ex: cf_1=value&cf_2=~substring)"
-      ja_JP: "クエリパラメータとしてのカスタムフィールドフィルター（例：cf_1=value&cf_2=~substring）"
+      en_US: "Additional query parameters for filtering (e.g., cf_1=value&fixed_version_id=2&category_id=3)"
+      zh_Hans: "用于过滤的附加查询参数（例如：cf_1=value&fixed_version_id=2&category_id=3）"
+      pt_BR: "Parâmetros de consulta adicionais para filtragem (ex: cf_1=value&fixed_version_id=2&category_id=3)"
+      ja_JP: "フィルタリング用の追加クエリパラメータ（例：cf_1=value&fixed_version_id=2&category_id=3）"
     placeholder:
-      en_US: "cf_1=abcdef&cf_4=~foo"
-      zh_Hans: "cf_1=abcdef&cf_4=~foo"
-      pt_BR: "cf_1=abcdef&cf_4=~foo"
-      ja_JP: "cf_1=abcdef&cf_4=~foo"
-    llm_description: Custom field filters using & separated query parameters (cf_x=value format)
+      en_US: "cf_1=abcdef&fixed_version_id=2&category_id=3"
+      zh_Hans: "cf_1=abcdef&fixed_version_id=2&category_id=3"
+      pt_BR: "cf_1=abcdef&fixed_version_id=2&category_id=3"
+      ja_JP: "cf_1=abcdef&fixed_version_id=2&category_id=3"
+    llm_description: Additional query parameters for filtering using & separated format (supports custom fields, fixed_version_id, category_id, etc.)
     form: llm
 extra:
   python:
