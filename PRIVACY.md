@@ -1,7 +1,7 @@
 # Privacy Policy
 
 **Last Updated:** 2025-06-27
-**Version:** 0.0.2
+**Version:** 0.1.0
 
 ## Introduction
 

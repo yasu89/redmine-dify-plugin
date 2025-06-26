@@ -1,7 +1,7 @@
 # Redmine Plugin for Dify
 
 **Author:** yasu89
-**Version:** 0.0.2
+**Version:** 0.1.0
 **Type:** Tool Provider Plugin
 **Repository:** https://github.com/yasu89/redmine-dify-plugin
 
